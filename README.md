@@ -1,4 +1,4 @@
-# OpenAI-Api-Shenanigans
+# OpenAI-API-Shenanigans
 A longer term project using the different models available through the OpenAI API. No clue where this is going, just that it's going to be a ride.
 
 ## Code that's Currently Here
