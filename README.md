@@ -12,3 +12,12 @@ If you want to use any of this code, you need to either use environment variable
 Speaking of Keys, you need two of them. One's an "Organization Key" and OpenAI assigns one to you. The second one's an API key, which you need to generate (ideally per application). Both of these can be found by going to the OpenAI website at <https://platform.openai.com/overview>
 
 Every program here will have a section at the top which initializes both keys, and if you're hardcoding these keys, just paste them between quotes and you're good to go!
+
+## Learnings
+The OpenAI models are extremely powerful, but you need to know how to use them. Prompt design is especially important (shocking, I know). Generating a lot of stuff results in OpenAI charging you for a lot of stuff (again: shocking, I know).
+
+Always make sure that you're monitoring your usage. Use simpler, cheaper models for less complex processes.
+
+Speech to text is a very expensive process, and for longer content, you can sometimes end up with far more tokens than your model can handle. I'm not sure how to deal with this yet, but I'm working on it 👀
+
+And finally, PyDub requires you to copy executable files from the PyDub source folder to your working directory. And that is annoying. Very. Annoying.
