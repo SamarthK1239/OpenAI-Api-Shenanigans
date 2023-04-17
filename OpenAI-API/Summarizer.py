@@ -4,6 +4,8 @@ from pathlib import Path
 from dotenv import load_dotenv
 import openai
 
+import TokenSplitter
+
 path = Path("Environment-Variables/.env")
 load_dotenv(dotenv_path=path)
 
@@ -23,11 +25,16 @@ with open("transcription.txt") as f:
 # presence_penalty: Penalizes new tokens based on if they show up already. Increases the likelihood of new topics coming up
 # best_of: Generates the specified number of items and then returns the best one
 
+prompt = "Comprehensively summarize this for a university student. Using bullet points to organize the summary, " \
+         "Go through every piece of advice provided by the speaker. " \
+         "If you can use technical programming terms, be sure to reference them.\n" + transcription
+
+promptLength = TokenSplitter.getTokenLength(prompt)
+
 # First generation pass using davinci-003 model
 response = openai.Completion.create(
     model="text-davinci-003",
-    prompt="Comprehensively summarize this for a university student. Using bullet points to organize the summary, "
-           "Go through every piece of advice provided by the speaker. If you can use technical programming terms, be sure to reference them.\n" + transcription,
+    prompt=prompt,
     temperature=0.3,
     max_tokens=512,
     top_p=0.5,
@@ -62,4 +69,4 @@ final_detailed_response = openai.Completion.create(
 )
 
 # Print final response after all three passes
-print("Final Result", final_detailed_response["choices"][0]["text"])
+print("Final Result:", final_detailed_response["choices"][0]["text"])
