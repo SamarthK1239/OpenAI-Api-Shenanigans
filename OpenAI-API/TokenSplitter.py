@@ -1,17 +1,11 @@
-from nltk.tokenize import word_tokenize
+import tiktoken
 
 
-def getTokenLength(prompt=None):
-    if prompt is None:
-        with open("transcription.txt") as f:
-            transcription = f.readline()
-    else:
-        transcription = prompt
+def getInputTokenSize(model, input_message):
+    encoding = tiktoken.encoding_for_model(model)
+    tokenized = encoding.encode(input_message)
+    length = len(tokenized)
 
-    tokenized_list = word_tokenize(transcription)
-    input_size = len(tokenized_list)
+    returned_list = [length, encoding.max_token_value]
 
-    return input_size
-
-
-print(getTokenLength())
+    return returned_list

@@ -29,11 +29,16 @@ prompt = "Comprehensively summarize this for a university student. Using bullet 
          "Go through every piece of advice provided by the speaker. " \
          "If you can use technical programming terms, be sure to reference them.\n" + transcription
 
-promptLength = TokenSplitter.getTokenLength(prompt)
+model_name = "text-davinci-003"
+promptLength = TokenSplitter.getInputTokenSize(model_name, prompt)
+
+if promptLength[0] > promptLength[1]:
+    print("Input prompt is too long. Please shorten it to " + str(promptLength[1]) + " tokens.")
+    exit()
 
 # First generation pass using davinci-003 model
 response = openai.Completion.create(
-    model="text-davinci-003",
+    model=model_name,
     prompt=prompt,
     temperature=0.3,
     max_tokens=512,
@@ -46,7 +51,7 @@ print(response["choices"][0]["text"])
 
 # Fact Checking pass, uses same model as above
 fact_checked_response = openai.Completion.create(
-    model="text-davinci-003",
+    model=model_name,
     prompt="Fact check and clarify each bullet point:\n" + response["choices"][0]["text"],
     temperature=0.3,
     max_tokens=512,
@@ -58,7 +63,7 @@ print(fact_checked_response["choices"][0]["text"])
 
 # Detail-addition pass, using same model as above
 final_detailed_response = openai.Completion.create(
-    model="text-davinci-003",
+    model=model_name,
     prompt="Add as much detail as you can to each bullet point. Split them up into additional bullet points if needed:\n" +
            fact_checked_response["choices"][0]["text"],
     temperature=0.3,
