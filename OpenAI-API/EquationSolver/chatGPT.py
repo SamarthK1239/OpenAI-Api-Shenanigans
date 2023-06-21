@@ -11,7 +11,8 @@ load_dotenv(dotenv_path=path)
 openai.organization = os.getenv('organization')
 openai.api_key = os.getenv("api_key")
 
-def convertProblemToEquation(word_problem):
+
+def convertProblemToEquation():
     word_problem = input("Enter a word problem: ")
     response = openai.Completion.create(
         model="text-davinci-003",
@@ -24,6 +25,7 @@ def convertProblemToEquation(word_problem):
         stop=["\n"]
     )
     return response["choices"][0]["text"]
+
 
 def extractEquation(response):
     equation = openai.Completion.create(
