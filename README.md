@@ -6,6 +6,8 @@ A longer term project using the different models available through the OpenAI AP
 - A simple sentiment analyzer that takes a prompt and then analyzes if it is positive, negative or neutral, and also returns a rating from 1 - 10, where 1 is the most negative and 10 is the most positive.
 - The beginnings of a Summarization Application that leverages the Speech-To-Text Functionality of the Whisper-1 model
 - A simple program that uses TikToken to see how many tokens an input prompt contains (This one's still a work in progress, additional features that allow prompts to be shortened will be added
+- The beginnings of an equation solver that uses ChatGPT to convert word problems into solvable equations, and then passes those equations through the Wolfram Alpha API, allowing them to be solved
+  - This sub-project is still very much a work in progress, and I have plans to implement a picture-to-text feature 
 
 ## Random Info
 If you want to use any of this code, you need to either use environment variables placed in a .env, within a folder called "Environment Variables", or you can just get rid of the environment variable code entirely and hard-code your keys into it (I don't recommend this, because if you ever end up uploading your code or changing your keys, you've got to go in and edit it in every single program).
