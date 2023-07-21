@@ -1,11 +1,9 @@
 import os
 from pathlib import Path
 
+import requests
 from dotenv import load_dotenv
 import openai
-
-import urllib.request
-from PIL import Image
 
 path = Path("Environment-Variables/.env")
 load_dotenv(dotenv_path=path)
@@ -23,8 +21,8 @@ response = openai.Image.create(
 
 # Retrieve web-URL for image
 image_url = response['data'][0]['url']
+response = requests.get(image_url)
 
 # Save and open image on local machine
-urllib.request.urlretrieve(image_url, "result.png")
-img = Image.open("result.png")
-img.show()
+with open("generated_image.jpg", "wb") as f:
+    f.write(response.content)
