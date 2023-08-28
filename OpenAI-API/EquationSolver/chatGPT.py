@@ -12,7 +12,9 @@ openai.organization = os.getenv('organization')
 openai.api_key = os.getenv("api_key")
 
 
-def convertProblemToEquation():
+def convertProblemToEquation(orgKey, apiKey):
+    openai.organization = orgKey
+    openai.api_key = apiKey
     word_problem = input("Enter a word problem: ")
     response = openai.Completion.create(
         model="text-davinci-003",
@@ -27,7 +29,9 @@ def convertProblemToEquation():
     return response["choices"][0]["text"]
 
 
-def extractEquation(response):
+def extractEquation(response, orgKey, apiKey):
+    openai.organization = orgKey
+    openai.api_key = apiKey
     equation = openai.Completion.create(
         model="text-davinci-003",
         prompt="From this text, extract an equation which i can put into an equation solver such as symbolab, and respond with only the equation and no accompanying text: \n" + response,
