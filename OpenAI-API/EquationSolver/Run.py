@@ -1,31 +1,16 @@
-import chatGPT
+# Author: Samarth Kulkarni
+
+# Import the two modules needed, this is simply a management program, intended to make running this thing easier
 import EquationSolver
-import temp_dev_chatGPT
+import problem_to_equation
 
-import os
-from pathlib import Path
-from dotenv import load_dotenv
+# Initialize the convertor
+convertor = problem_to_equation.ChatGPT()
 
-testClass = temp_dev_chatGPT.ChatGPT()
+# Convert the problem to an equation
+equation_pass_1 = convertor.convertProblemToEquation()
+print("Equation: " + equation_pass_1)
 
-
-
-# path = Path("Environment-Variables/.env")
-# load_dotenv(dotenv_path=path)
-#
-# # Setting organization and API keys
-# orgKey = os.getenv('organization')
-# apiKey = os.getenv("api_key")
-
-
-# equation_pass_1 = chatGPT.convertProblemToEquation(orgKey, apiKey)
-# equation_pass_2 = chatGPT.extractEquation(equation_pass_1, orgKey, apiKey)
-
-equation_pass_1 = testClass.convertProblemToEquation()
-equation_pass_2 = testClass.extractEquation(equation_pass_1)
-
-print("Equation: " + equation_pass_2)
-
-# solution = EquationSolver.solveEquation(equation_pass_2)
-#
-# print("Solution: " + solution)
+# Solve the equation
+solution = EquationSolver.solveEquation(equation_pass_1)
+print("Solution: " + solution)

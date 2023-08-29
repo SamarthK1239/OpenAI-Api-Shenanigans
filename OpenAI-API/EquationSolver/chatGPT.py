@@ -4,7 +4,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 import openai
 
-path = Path("Environment-Variables/.env")
+path = Path("D:\Github Repos\OpenAI-Api-Shenanigans\OpenAI-API\Environment-Variables/.env")
 load_dotenv(dotenv_path=path)
 
 # Setting organization and API keys
@@ -43,3 +43,6 @@ def extractEquation(response, orgKey, apiKey):
         stop=["\n"]
     )
     return equation["choices"][0]["text"]
+
+
+print(os.getenv('organization'))
