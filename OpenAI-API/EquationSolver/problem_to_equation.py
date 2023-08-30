@@ -28,8 +28,8 @@ class ChatGPT:
             messages=[
                 {
                     "role": "user",
-                    "content": "Use the word problem from below to create an arithmetic equation, using any numerical figures from the question. "
-                               "Respond with only a mathematical equation and no text whatsoever. Ensure that the equation you provide can be directly entered into a tool like "
+                    "content": "Use the word problem from below to create an arithmetic equation(s), using any numerical figures from the question. You may create multiple equations if required to answer the question."
+                               "Respond with only mathematical equation(s) and no text whatsoever. Ensure that the equation(s) you provide can be directly entered into a tool like "
                                "symbolab to obtain an answer. Include brackets wherever needed for clarity. \n" + word_problem
                 }
             ],
