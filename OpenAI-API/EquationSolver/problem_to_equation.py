@@ -16,7 +16,6 @@ class ChatGPT:
 
     # Initialize the class
     def __init__(self):
-        print(self.ORGKEY, self.APIKEY)
         self.openai.organization = self.ORGKEY
         self.openai.api_key = self.APIKEY
 
