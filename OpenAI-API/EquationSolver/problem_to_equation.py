@@ -7,7 +7,7 @@ class ChatGPT:
     import openai
 
     # Load the environment variables
-    path = Path("D:\Github Repos\OpenAI-Api-Shenanigans\OpenAI-API\Environment-Variables/.env")
+    path = Path("EquationSolver/Environment-Variables/.env")
     load_dotenv(dotenv_path=path)
 
     # Don't really need this, might remove it later
