@@ -29,3 +29,5 @@ Speech-to-text is a very expensive process, and for longer content, you can some
 PyDub requires you to copy executable files from the PyDub source folder to your working directory. And that is annoying. Very. Annoying. (Don't use it)
 
 if you want to measure how many tokens an input has, OpenAI has another package, TikToken, that you can use to easily find this value. There's some sample code for this in *TokenSplitter.py*
+
+The WolframAlpha solver is powerful, but only as long as you give it good inputs. There are still occasions where GPT-3.5 struggles to listen to the instructions given, and ends up just returning whatever it likes. There's a safeguard that needs to be implemented to prevent this from crashing the project as a whole.
