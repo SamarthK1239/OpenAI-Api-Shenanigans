@@ -4,13 +4,13 @@ A longer-term project using the different models available through the OpenAI AP
 **Important note:** *Some models are being deprecated in favor of GPT-3, GPT-3.5, and GPT-4. I still need to edit code in this repository to use the models not in danger of being deprecated. Additionally, any fine-tuning experiments will be paused until the newer models support it.*
 
 ## Code that's Currently Here
-- A very simple image generation program that leverages Dall-E to generate 1024x1024 Images around any prompt you give it
-- An add-on to this that creates a variation on images that have been generated already
-- A simple sentiment analyzer that takes a prompt and then analyzes if it is positive, negative, or neutral, and also returns a rating from 1 - 10, where 1 is the most negative and 10 is the most positive.
-- The beginnings of a Summarization Application that leverages the Speech-To-Text Functionality of the Whisper-1 model
-- A simple program that uses TikToken to see how many tokens an input prompt contains (This one's still a work in progress, additional features that allow prompts to be shortened will be added
-- The beginnings of an equation solver that uses ChatGPT to convert word problems into solvable equations, and then passes those equations through the Wolfram Alpha API, allowing them to be solved
-  - This sub-project is still very much a work in progress, and I have plans to implement a picture-to-text feature 
+- A very simple image generation program that leverages Dall-E to generate 1024x1024 Images around any prompt you give it (*COMPLETED*)
+- An add-on to this that creates a variation on images that have been generated already (*COMPLETED*)
+- A simple sentiment analyzer that takes a prompt and then analyzes if it is positive, negative, or neutral, and also returns a rating from 1 - 10, where 1 is the most negative and 10 is the most positive. (*COMPLETED*)
+- The beginnings of a Summarization Application that leverages the Speech-To-Text Functionality of the Whisper-1 model (*COMPLETED*)
+- A simple program that uses TikToken to see how many tokens an input prompt contains (This one's still a work in progress, additional features that allow prompts to be shortened will be added (*COMPLETED*)
+- The beginnings of an equation solver that uses ChatGPT to convert word problems into solvable equations, and then passes those equations through the Wolfram Alpha API, allowing them to be solved (***ON HOLD***)
+- A dynamic, interactive storyteller that uses the GPT-3.5-Turbo model to create an interactive story that changes with the user's response. The goal is to create stories that are different every time, leading to crazy reusability with just a limited number of starting prompts! (***ONGOING!***)
 
 ## Random Info
 If you want to use any of this code, you need to either use environment variables placed in a .env, within a folder called "Environment Variables", or you can just get rid of the environment variable code entirely and hard-code your keys into it (I don't recommend this, because if you ever end up uploading your code or changing your keys, you've got to go in and edit it in every single program).
