@@ -24,4 +24,4 @@ response = openai.chat.completions.create(
 )
 
 # Print the response text
-print(response['choices'][0]['text'])
+print(response.choices[0].message.content)
