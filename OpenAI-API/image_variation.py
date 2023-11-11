@@ -4,9 +4,6 @@ import requests
 from dotenv import load_dotenv
 import openai
 
-import urllib.request
-from PIL import Image
-
 path = Path("Environment-Variables/.env")
 load_dotenv(dotenv_path=path)
 

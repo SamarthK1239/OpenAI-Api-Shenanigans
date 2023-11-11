@@ -3,24 +3,29 @@ from pathlib import Path
 
 import requests
 from dotenv import load_dotenv
-import openai
+from openai import OpenAI
 
+# Get environment variables
 path = Path("Environment-Variables/.env")
 load_dotenv(dotenv_path=path)
 
-# Setting organization and API keys
-openai.organization = os.getenv('organization')
-openai.api_key = os.getenv("api_key")
-
-# Generates n images of the specified size, based on user-provided prompt
-response = openai.Image.create(
-    prompt=input("Enter a prompt: "),
-    n=1,
-    size="1024x1024"
+# Set up openai client
+openai = OpenAI(
+    organization=os.getenv('organization'),
+    api_key=os.getenv("api_key")
 )
 
+# Generates n images of the specified size, based on user-provided prompt
+response = openai.images.generate(
+    model="dall-e-3",
+    prompt=input("Enter a prompt: "),
+    n=1,
+    size="1792x1024"
+)
+
+print(response)
 # Retrieve web-URL for image
-image_url = response['data'][0]['url']
+image_url = response.data[0].url
 response = requests.get(image_url)
 
 # Save and open image on local machine
