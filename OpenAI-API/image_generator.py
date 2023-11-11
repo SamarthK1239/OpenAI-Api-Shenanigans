@@ -15,19 +15,20 @@ openai = OpenAI(
     api_key=os.getenv("api_key")
 )
 
-# Generates n images of the specified size, based on user-provided prompt
-response = openai.images.generate(
-    model="dall-e-3",
-    prompt=input("Enter a prompt: "),
-    n=1,
-    size="1792x1024"
-)
 
-print(response)
-# Retrieve web-URL for image
-image_url = response.data[0].url
-response = requests.get(image_url)
+def generate_image():
+    # Generates n images of the specified size, based on user-provided prompt
+    response = openai.images.generate(
+        model="dall-e-3",
+        prompt=input("Enter a prompt: "),
+        n=1,
+        size="1024x1024"
+    )
 
-# Save and open image on local machine
-with open("generated_image.jpg", "wb") as f:
-    f.write(response.content)
+    # Retrieve web-URL for image
+    image_url = response.data[0].url
+    response = requests.get(image_url)
+
+    # Save and open image on local machine
+    with open("generated_image.jpg", "wb") as f:
+        f.write(response.content)

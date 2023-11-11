@@ -2,26 +2,25 @@ import os
 from pathlib import Path
 
 from dotenv import load_dotenv
-import openai
+from openai import OpenAI
 
 path = Path("Environment-Variables/.env")
 load_dotenv(dotenv_path=path)
 
-# Setting organization and API keys
-openai.organization = os.getenv('organization')
-openai.api_key = os.getenv("api_key")
+# Set up the openai client
+openai = OpenAI(
+    organization=os.getenv('organization'),
+    api_key=os.getenv("api_key")
+)
 
 # Generate response using davinci-003
 # Parameter meanings are listed in Summarizer.py
-response = openai.Completion.create(
-    model="text-davinci-003",
-    # Prompt is hardcoded, I'm lazy lol
-    prompt="What is the sentiment of this text? Respond with one of the following: Positive, Negative, Neutral, and rank it on a scale of 1 - 10 where 1 is heavily negative and 10 is heavily positive. \n" + input("What text would you like to classify? "),
-    temperature=0,
-    max_tokens=60,
-    top_p=1,
-    frequency_penalty=0.5,
-    presence_penalty=0
+response = openai.chat.completions.create(
+    model="gpt-3.5-turbo-1106",
+    messages=[
+        {"role": "user", "content": "What is the sentiment of this text? Respond with one of the following: Positive, Negative, Neutral, and rank it on a scale of 1 - 10 where 1 is heavily negative and 10 is heavily positive."},
+        {"role": "user", "content": input("What text would you like to classify? ")}
+    ]
 )
 
 # Print the response text
