@@ -1,6 +1,7 @@
 import tiktoken
 
 
+# Get input size in tokens
 def getInputTokenSize(model, input_message):
     encoding = tiktoken.encoding_for_model(model)
     tokenized = encoding.encode(input_message)

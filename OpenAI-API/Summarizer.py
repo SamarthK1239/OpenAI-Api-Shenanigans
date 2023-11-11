@@ -2,16 +2,18 @@ import os
 from pathlib import Path
 
 from dotenv import load_dotenv
-import openai
+from openai import OpenAI
 
 import TokenSplitter
 
 path = Path("Environment-Variables/.env")
 load_dotenv(dotenv_path=path)
 
-# Setting organization and API keys
-openai.organization = os.getenv('organization')
-openai.api_key = os.getenv("api_key")
+# Set up openai client
+openai = OpenAI(
+    organization=os.getenv('organization'),
+    api_key=os.getenv("api_key")
+)
 
 # Read transcription file
 with open("transcription.txt") as f:
@@ -29,49 +31,35 @@ prompt = "Comprehensively summarize this for a university student. Using bullet 
          "Go through every piece of advice provided by the speaker. " \
          "If you can use technical programming terms, be sure to reference them.\n" + transcription
 
-model_name = "text-davinci-003"
-promptLength = TokenSplitter.getInputTokenSize(model_name, prompt)
-
-if promptLength[0] > promptLength[1]:
-    print("Input prompt is too long. Please shorten it to " + str(promptLength[1]) + " tokens.")
-    exit()
-
 # First generation pass using davinci-003 model
-response = openai.Completion.create(
-    model=model_name,
-    prompt=prompt,
-    temperature=0.3,
-    max_tokens=512,
-    top_p=0.5,
-    frequency_penalty=0.5,
-    presence_penalty=1.4,
-    best_of=2
+response = openai.chat.completions.create(
+    model="gpt-3.5-turbo-1106",
+    messages=[
+        {"role": "user", "content": prompt},
+    ]
 )
-print(response["choices"][0]["text"])
+
+print(response.choices[0].message.content)
 
 # Fact Checking pass, uses same model as above
-fact_checked_response = openai.Completion.create(
-    model=model_name,
-    prompt="Fact check and clarify each bullet point:\n" + response["choices"][0]["text"],
-    temperature=0.3,
-    max_tokens=512,
-    top_p=0.5,
-    frequency_penalty=0.5,
-    presence_penalty=1.4
+fact_checked_response = openai.chat.completions.create(
+    model="gpt-3.5-turbo-1106",
+    messages=[
+        {"role": "user", "content": "Clarify each bullet point: "},
+        {"role": "user", "content": response.choices[0].message.content}
+    ]
 )
-print(fact_checked_response["choices"][0]["text"])
+print(fact_checked_response.choices[0].message.content)
 
 # Detail-addition pass, using same model as above
-final_detailed_response = openai.Completion.create(
-    model=model_name,
-    prompt="Add as much detail as you can to each bullet point. Split them up into additional bullet points if needed:\n" +
-           fact_checked_response["choices"][0]["text"],
-    temperature=0.3,
-    max_tokens=512,
-    top_p=0.5,
-    frequency_penalty=0.5,
-    presence_penalty=1.4
+final_detailed_response = openai.chat.completions.create(
+    model="gpt-3.5-turbo-1106",
+    messages=[
+        {"role": "user", "content": "Add as much detail as you can to each bullet point. Use paragraphs to organize your response."},
+        {"role": "user", "content": fact_checked_response.choices[0].message.content}
+    ]
 )
+print(final_detailed_response.choices[0].message.content)
 
 # Print final response after all three passes
-print("Final Result:", final_detailed_response["choices"][0]["text"])
+print("Final Result:", final_detailed_response.choices[0].message.content)
