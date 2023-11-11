@@ -3,7 +3,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from openai import OpenAI
 
-path = Path("Environment-Variables/.env")
+path = Path("../Environment-Variables/.env")
 load_dotenv(dotenv_path=path)
 
 # Set up openai client

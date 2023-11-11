@@ -6,7 +6,7 @@ from openai import OpenAI
 
 import TokenSplitter
 
-path = Path("Environment-Variables/.env")
+path = Path("../Environment-Variables/.env")
 load_dotenv(dotenv_path=path)
 
 # Set up openai client
