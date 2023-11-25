@@ -22,7 +22,7 @@ def generate_image():
         model="dall-e-3",
         prompt=input("Enter a prompt: "),
         n=1,
-        size="1024x1024"
+        size="1792x1024"
     )
 
     # Retrieve web-URL for image
