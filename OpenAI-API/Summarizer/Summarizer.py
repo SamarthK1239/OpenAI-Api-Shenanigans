@@ -33,7 +33,7 @@ prompt = "Comprehensively summarize this for a university student. Using bullet 
 
 # First generation pass using davinci-003 model
 response = openai.chat.completions.create(
-    model="gpt-3.5-turbo-1106",
+    model="gpt-4-1106-preview",
     messages=[
         {"role": "user", "content": prompt},
     ]
@@ -43,7 +43,7 @@ print(response.choices[0].message.content)
 
 # Fact Checking pass, uses same model as above
 fact_checked_response = openai.chat.completions.create(
-    model="gpt-3.5-turbo-1106",
+    model="gpt-4-1106-preview",
     messages=[
         {"role": "user", "content": "Clarify each bullet point: "},
         {"role": "user", "content": response.choices[0].message.content}
@@ -53,7 +53,7 @@ print(fact_checked_response.choices[0].message.content)
 
 # Detail-addition pass, using same model as above
 final_detailed_response = openai.chat.completions.create(
-    model="gpt-3.5-turbo-1106",
+    model="gpt-4-1106-preview",
     messages=[
         {"role": "user", "content": "Add as much detail as you can to each bullet point. Use paragraphs to organize your response."},
         {"role": "user", "content": fact_checked_response.choices[0].message.content}
