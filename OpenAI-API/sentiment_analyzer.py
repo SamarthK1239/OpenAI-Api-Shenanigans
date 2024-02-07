@@ -14,7 +14,7 @@ openai = OpenAI(
 )
 
 # Generate response using davinci-003
-# Parameter meanings are listed in Summarizer.py
+# Parameter meanings are listed in summarizer.py
 response = openai.chat.completions.create(
     model="gpt-4-1106-preview",
     messages=[

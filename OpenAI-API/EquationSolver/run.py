@@ -1,7 +1,7 @@
 # Author: Samarth Kulkarni
 
 # Import the two modules needed, this is simply a management program, intended to make running this thing easier
-import EquationSolver
+import equation_solver
 import problem_to_equation
 
 # Initialize the convertor
