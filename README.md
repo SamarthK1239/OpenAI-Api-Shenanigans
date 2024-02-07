@@ -24,7 +24,7 @@ The OpenAI models are extremely powerful, but you need to know how to use them. 
 
 Always make sure that you're monitoring your usage. Use simpler, cheaper models for less complex processes.
 
-Speech-to-text is a very expensive process, and for longer content, you can sometimes end up with far more tokens than your model can handle. I'm not sure how to deal with this yet, but I'm working on it 👀
+~~Speech-to-text is a very expensive process, and for longer content, you can sometimes end up with far more tokens than your model can handle. I'm not sure how to deal with this yet, but I'm working on it 👀~~ I figured it out! Or well, OpenAI did it for me. Introducing the GPT-4-1106 and GPT-4-0125 Previews, with an astronomically insane input token limit of **128,000**. That's... more than anything I've ever needed to throw at a model, but it will definitely come in handy.
 
 PyDub requires you to copy executable files from the PyDub source folder to your working directory. And that is annoying. Very. Annoying. (Don't use it)
 
