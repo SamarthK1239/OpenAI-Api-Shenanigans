@@ -1,7 +1,7 @@
 # OpenAI-API-Shenanigans
 A longer-term project using the different models available through the OpenAI API. No clue where this is going, just that it's going to be a ride.
 
-**Important note:** ~~Some models are being deprecated in favor of GPT-3, GPT-3.5, and GPT-4. I still need to edit code in this repository to use the models not in danger of being deprecated. Additionally, any fine-tuning experiments will be paused until the newer models support it.~~ *All current projects on this repository have been updated to the latest version of the API, and where possible, use **GPT-3.5-Turbo-1106**.*
+**Important note:** ~~Some models are being deprecated in favor of GPT-3, GPT-3.5, and GPT-4. I still need to edit code in this repository to use the models not in danger of being deprecated. Additionally, any fine-tuning experiments will be paused until the newer models support it.~~ *All current projects on this repository have been updated to the latest version of the API, and where possible, use **GPT-3.5-Turbo-1106**.* I do have access to GPT-4, but have elected to not port over all of the code here to use the latest GPT version since not all developers who might access this project will have access to it.
 
 ## Code that's Currently Here
 - A very simple image generation program that leverages Dall-E to generate 1024x1024 Images around any prompt you give it (*API version upgrade COMPLETED*)
@@ -11,6 +11,7 @@ A longer-term project using the different models available through the OpenAI AP
 - A simple program that uses TikToken to see how many tokens an input prompt contains (This one's still a work in progress, additional features that allow prompts to be shortened will be added (*API version upgrade COMPLETED*)
 - The beginnings of an equation solver that uses ChatGPT to convert word problems into solvable equations, and then passes those equations through the Wolfram Alpha API, allowing them to be solved (***ON HOLD, API version upgrade INCOMPLETE***)
 - A dynamic, interactive storyteller that uses the GPT-3.5-Turbo model to create an interactive story that changes with the user's response. The goal is to create stories that are different every time, leading to crazy reusability with just a limited number of starting prompts! (***ONGOING!***)
+- A quick test of *GPT-4-Vision-Preview* since this is new and interesting. Just a quick single command to show basic usage of GPT with vision. I'd like to incorporate some more traditional aspects of computer vision to it, but I'm still finalizing the details of this project
 
 ## Random Info
 If you want to use any of this code, you need to either use environment variables placed in a .env, within a folder called "Environment Variables", or you can just get rid of the environment variable code entirely and hard-code your keys into it (I don't recommend this, because if you ever end up uploading your code or changing your keys, you've got to go in and edit it in every single program).
