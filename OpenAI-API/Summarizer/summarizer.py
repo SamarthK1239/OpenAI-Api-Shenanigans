@@ -4,8 +4,6 @@ from pathlib import Path
 from dotenv import load_dotenv
 from openai import OpenAI
 
-import TokenSplitter
-
 path = Path("../Environment-Variables/.env")
 load_dotenv(dotenv_path=path)
 
