@@ -36,7 +36,7 @@ headers = {
 }
 
 payload = {
-    "model": "gpt-4-turbo",
+    "model": "gpt-4o",
     "messages": [
         {
             "role": "user",
@@ -58,3 +58,5 @@ payload = {
     ],
     "max_tokens": 700
 }
+
+response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
