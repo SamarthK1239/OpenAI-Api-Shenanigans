@@ -1,0 +1,73 @@
+# Quick Setup Guide for Executable
+
+## ✅ How to Set Up Your API Key
+
+When running the `.exe` file, place your `.env` file in the **same folder** as the executable:
+
+```
+dist/
+  ├── TrainingQA-Helper.exe
+  └── .env                    ← Put your .env file here!
+```
+
+### Your .env File
+
+Create a file named `.env` (no extension before the dot!) with this content:
+
+```
+OPENAI_API_KEY=your-actual-api-key-here
+```
+
+## 📋 Step by Step
+
+1. **Copy your `.env` file** to the `dist/` folder
+2. **Make sure it's named exactly**: `.env` (not `.env.txt`)
+3. **Run the executable**: `TrainingQA-Helper.exe`
+
+## 🔍 The App Will Search For .env In These Locations:
+
+1. ✅ `.env` (same folder as .exe) - **RECOMMENDED**
+2. ✅ `Environment-Variables/.env` (subfolder)
+3. ✅ `../Environment-Variables/.env` (for development)
+
+## ⚠️ Common Issues
+
+### "API key not found in environment variables!"
+
+**Problem**: `.env` file is not in the correct location
+
+**Solution**: Copy `.env` to the same folder as `TrainingQA-Helper.exe`
+
+### "OPENAI_API_KEY not found in .env file!"
+
+**Problem**: The `.env` file doesn't have the API key line
+
+**Solution**: Make sure your `.env` file contains:
+```
+OPENAI_API_KEY=sk-proj-your-key-here
+```
+
+### File shows as ".env.txt" in File Explorer
+
+**Problem**: Windows is hiding file extensions
+
+**Solution**: 
+1. Open File Explorer
+2. View → Show → File name extensions (check the box)
+3. Rename the file to remove `.txt` if present
+
+## 📦 For Distribution
+
+When sharing your app with others, create a `.env.template` file:
+
+```
+OPENAI_API_KEY=paste-your-key-here
+```
+
+Then tell users to:
+1. Rename `.env.template` to `.env`
+2. Replace `paste-your-key-here` with their actual API key
+
+---
+
+**That's it!** Your executable will now find the API key. 🚀
