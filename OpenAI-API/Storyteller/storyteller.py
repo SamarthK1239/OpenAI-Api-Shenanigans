@@ -10,7 +10,6 @@ load_dotenv(dotenv_path=path)
 
 # Setup OpenAI client
 client = OpenAI(
-    organization=os.getenv('organization'),
     api_key=os.getenv("api_key")
 )
 

@@ -10,15 +10,14 @@ path = Path("Environment-Variables/.env")
 load_dotenv(dotenv_path=path)
 
 # Set up openai client
-openai = OpenAI(
-    organization=os.getenv('organization'),
+client = OpenAI(
     api_key=os.getenv("api_key")
 )
 
 
 def generate_image():
     # Generates n images of the specified size, based on user-provided prompt
-    response = openai.images.generate(
+    response = client.images.generate(
         model="dall-e-2",
         prompt=input("Enter a prompt: "),
         n=1,

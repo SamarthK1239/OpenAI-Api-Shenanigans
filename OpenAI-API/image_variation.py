@@ -8,14 +8,13 @@ path = Path("Environment-Variables/.env")
 load_dotenv(dotenv_path=path)
 
 # set up the openai client
-openai = OpenAI(
-    organization=os.getenv('organization'),
+client = OpenAI(
     api_key=os.getenv("api_key")
 )
 
 
 def create_variation():
-    response = openai.images.create_variation(
+    response = client.images.create_variation(
         image=open("generated_image.jpg", "rb"),
         n=1,
         size="1024x1024"

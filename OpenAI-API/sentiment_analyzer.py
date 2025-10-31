@@ -8,14 +8,13 @@ path = Path("Environment-Variables/.env")
 load_dotenv(dotenv_path=path)
 
 # Set up the openai client
-openai = OpenAI(
-    organization=os.getenv('organization'),
+client = OpenAI(
     api_key=os.getenv("api_key")
 )
 
 # Generate response using davinci-003
 # Parameter meanings are listed in summarizer.py
-response = openai.chat.completions.create(
+response = client.chat.completions.create(
     model="gpt-4-1106-preview",
     messages=[
         {"role": "user", "content": "What is the sentiment of this text? Respond with one of the following: Positive, Negative, Neutral, and rank it on a scale of 1 - 10 where 1 is heavily negative and 10 is heavily positive."},

@@ -4,7 +4,6 @@ import os
 from pathlib import Path
 
 from dotenv import load_dotenv
-import openai
 
 # Still have no idea why this works but hey I'm not complaining
 path = Path("Environment-Variables/.env")
