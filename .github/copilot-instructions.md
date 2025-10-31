@@ -33,6 +33,7 @@ OpenAI-API/
 ├── Storyteller/           # Interactive storytelling application
 ├── Summarizer/            # Speech-to-text summarization
 ├── TrainingAnswerer/      # Training-related utilities
+├── audio_translation.py   # Audio translation with Whisper
 ├── image_generator.py     # DALL-E image generation
 ├── image_variation.py     # Image variation creation
 ├── sentiment_analyzer.py  # Sentiment analysis tool
