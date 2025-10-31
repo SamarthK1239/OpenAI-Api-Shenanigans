@@ -52,6 +52,3 @@ def extractEquation(response, orgKey, apiKey):
         stop=["\n"]
     )
     return result.choices[0].message.content
-
-
-print(os.getenv('organization'))
