@@ -1,29 +1,27 @@
-# Using a class proved necessary in this case, as the OpenAI API requires the API key and organization key to be set as environment variables.
+# Using a class proved necessary in this case, as the OpenAI API requires the API key to be provided.
 class ChatGPT:
     # Same old imports
     import os
     from pathlib import Path
     from dotenv import load_dotenv
-    import openai
+    from openai import OpenAI
 
     # Load the environment variables
     path = Path("EquationSolver/Environment-Variables/.env")
     load_dotenv(dotenv_path=path)
 
     # Don't really need this, might remove it later
-    ORGKEY = os.getenv('organization')
     APIKEY = os.getenv("api_key")
 
     # Initialize the class
     def __init__(self):
-        self.openai.organization = self.ORGKEY
-        self.openai.api_key = self.APIKEY
+        self.client = self.OpenAI(api_key=self.APIKEY)
 
     # Function to convert the problem to an equation (switched from davinci-003 to gpt-3.5-turbo)
     # Prompt design is especially important here
     def convertProblemToEquation(self):
         word_problem = input("Enter a word problem: ")
-        response = self.openai.ChatCompletion.create(
+        response = self.client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
                 {
@@ -41,14 +39,19 @@ class ChatGPT:
             presence_penalty=0,
             stop=["\n"]
         )
-        return response["choices"][0]["message"]["content"]
+        return response.choices[0].message.content
 
     # Deprecated function, kept for reference to previous versions ONLY
     # Don't use this, it's not very good, and the model referenced is deprecated lol
     def extractEquation(self, response):
-        equation = self.openai.Completion.create(
-            model="text-davinci-003",
-            prompt="From this text, extract an equation which i can put into an equation solver such as symbolab, and respond with only the equation and no accompanying text: \n" + response,
+        result = self.client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {
+                    "role": "user",
+                    "content": "From this text, extract an equation which i can put into an equation solver such as symbolab, and respond with only the equation and no accompanying text: \n" + response
+                }
+            ],
             temperature=0.3,
             max_tokens=64,
             top_p=1,
@@ -56,4 +59,4 @@ class ChatGPT:
             presence_penalty=0,
             stop=["\n"]
         )
-        return equation["choices"][0]["text"]
+        return result.choices[0].message.content

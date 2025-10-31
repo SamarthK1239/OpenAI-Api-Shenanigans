@@ -2,23 +2,28 @@ import os
 from pathlib import Path
 
 from dotenv import load_dotenv
-import openai
+from openai import OpenAI
 
 path = Path("D:\Github Repos\OpenAI-Api-Shenanigans\OpenAI-API\Environment-Variables/.env")
 load_dotenv(dotenv_path=path)
 
-# Setting organization and API keys
-openai.organization = os.getenv('organization')
-openai.api_key = os.getenv("api_key")
-
+# Set up OpenAI client
+client = OpenAI(
+    api_key=os.getenv("api_key")
+)
 
 def convertProblemToEquation(orgKey, apiKey):
-    openai.organization = orgKey
-    openai.api_key = apiKey
+    # Note: orgKey parameter is deprecated but kept for backward compatibility
+    local_client = OpenAI(api_key=apiKey)
     word_problem = input("Enter a word problem: ")
-    response = openai.Completion.create(
-        model="text-davinci-003",
-        prompt="Use the word problem from below to create an equation, using any numerical figures from the question. Respond with only a mathematical equation and no text whatsoever. I do not need any explanatory text accompanying the equation. \n" + word_problem,
+    response = local_client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {
+                "role": "user",
+                "content": "Use the word problem from below to create an equation, using any numerical figures from the question. Respond with only a mathematical equation and no text whatsoever. I do not need any explanatory text accompanying the equation. \n" + word_problem
+            }
+        ],
         temperature=0.3,
         max_tokens=64,
         top_p=1,
@@ -26,15 +31,19 @@ def convertProblemToEquation(orgKey, apiKey):
         presence_penalty=0,
         stop=["\n"]
     )
-    return response["choices"][0]["text"]
-
+    return response.choices[0].message.content
 
 def extractEquation(response, orgKey, apiKey):
-    openai.organization = orgKey
-    openai.api_key = apiKey
-    equation = openai.Completion.create(
-        model="text-davinci-003",
-        prompt="From this text, extract an equation which i can put into an equation solver such as symbolab, and respond with only the equation and no accompanying text: \n" + response,
+    # Note: orgKey parameter is deprecated but kept for backward compatibility
+    local_client = OpenAI(api_key=apiKey)
+    result = local_client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {
+                "role": "user",
+                "content": "From this text, extract an equation which i can put into an equation solver such as symbolab, and respond with only the equation and no accompanying text: \n" + response
+            }
+        ],
         temperature=0.3,
         max_tokens=64,
         top_p=1,
@@ -42,7 +51,7 @@ def extractEquation(response, orgKey, apiKey):
         presence_penalty=0,
         stop=["\n"]
     )
-    return equation["choices"][0]["text"]
+    return result.choices[0].message.content
 
 
 print(os.getenv('organization'))
