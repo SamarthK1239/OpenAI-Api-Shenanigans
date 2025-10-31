@@ -74,11 +74,15 @@ openai = OpenAI(
 ## OpenAI API Best Practices
 
 ### Model Selection
-- Use `gpt-3.5-turbo-1106` for most tasks (as used throughout this codebase)
+- The codebase uses various models depending on the task:
+  - `gpt-3.5-turbo-1106` for storytelling
+  - `gpt-4-1106-preview` for sentiment analysis and summarization
+  - `gpt-4o` for vision-based tasks
+  - `whisper-1` for speech-to-text
+  - `dall-e-2` for image generation
 - Use GPT-4 models sparingly (not all developers have access)
-- Use `gpt-4-1106-preview` or `gpt-4-0125-preview` for large context (128k tokens)
 - Consider cost implications of model choices
-- Note: When adding new features, you may use newer model versions like `gpt-3.5-turbo` or `gpt-4o` if appropriate
+- Note: When adding new features, choose the model appropriate for the task complexity
 
 ### Prompt Design
 - Test prompts on ChatGPT website first before coding
