@@ -29,6 +29,7 @@ This repository contains various Python projects demonstrating different OpenAI 
 ```
 OpenAI-API/
 ├── EquationSolver/        # Equation solving with GPT and Wolfram Alpha
+├── StarterCodeGenerator/  # Code generation utilities
 ├── Storyteller/           # Interactive storytelling application
 ├── Summarizer/            # Speech-to-text summarization
 ├── TrainingAnswerer/      # Training-related utilities
@@ -69,9 +70,9 @@ openai = OpenAI(
 ## OpenAI API Best Practices
 
 ### Model Selection
-- Use GPT-3.5-Turbo-1106 for most tasks (default)
+- Use `gpt-3.5-turbo-1106` for most tasks (default)
 - Use GPT-4 models sparingly (not all developers have access)
-- Use GPT-4-1106-preview or GPT-4-0125-preview for large context (128k tokens)
+- Use `gpt-4-1106-preview` or `gpt-4-0125-preview` for large context (128k tokens)
 - Consider cost implications of model choices
 
 ### Prompt Design
@@ -134,7 +135,7 @@ openai = OpenAI(
 ### Dependency Management
 - Keep dependencies minimal and well-documented
 - Specify version requirements when necessary
-- Avoid deprecated packages (e.g., PyDub is discouraged)
+- Be aware of package limitations (e.g., PyDub requires executable file management)
 
 ## Common Patterns
 
