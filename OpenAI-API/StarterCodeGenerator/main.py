@@ -14,8 +14,7 @@ path = Path("/Environment-Variables/.env")
 load_dotenv(dotenv_path=path)
 
 # Initialize openai object
-openai = OpenAI(
-    organization=os.getenv('organization'),
+client = OpenAI(
     api_key=os.getenv('api_key')
 )
 

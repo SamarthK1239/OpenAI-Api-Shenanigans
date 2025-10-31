@@ -15,7 +15,7 @@ def encode_image(image_path):
         return base64.b64encode(image_file.read()).decode('utf-8')
 
 
-def local_image(openai, image_path):
+def local_image(client, image_path):
     # Load image
     image_path = image_path
 
@@ -53,10 +53,10 @@ def local_image(openai, image_path):
     print(response.json())
 
 
-def remote_image(openai, image_path):
+def remote_image(client, image_path):
     image_path = image_path
 
-    response = openai.chat.completions.create(
+    response = client.chat.completions.create(
         model="gpt-4o",
         messages=[
             {

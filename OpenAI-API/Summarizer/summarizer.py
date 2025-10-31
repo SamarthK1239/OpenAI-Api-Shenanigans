@@ -8,8 +8,7 @@ path = Path("../Environment-Variables/.env")
 load_dotenv(dotenv_path=path)
 
 # Set up openai client
-openai = OpenAI(
-    organization=os.getenv('organization'),
+client = OpenAI(
     api_key=os.getenv("api_key")
 )
 
@@ -30,7 +29,7 @@ prompt = "Comprehensively summarize this for a university student. Using bullet 
          "If you can use technical programming terms, be sure to reference them.\n" + transcription
 
 # First generation pass using davinci-003 model
-response = openai.chat.completions.create(
+response = client.chat.completions.create(
     model="gpt-4-1106-preview",
     messages=[
         {"role": "user", "content": prompt},
@@ -40,7 +39,7 @@ response = openai.chat.completions.create(
 print(response.choices[0].message.content)
 
 # Fact Checking pass, uses same model as above
-fact_checked_response = openai.chat.completions.create(
+fact_checked_response = client.chat.completions.create(
     model="gpt-4-1106-preview",
     messages=[
         {"role": "user", "content": "Clarify each bullet point: "},
@@ -50,7 +49,7 @@ fact_checked_response = openai.chat.completions.create(
 print(fact_checked_response.choices[0].message.content)
 
 # Detail-addition pass, using same model as above
-final_detailed_response = openai.chat.completions.create(
+final_detailed_response = client.chat.completions.create(
     model="gpt-4-1106-preview",
     messages=[
         {"role": "user", "content": "Add as much detail as you can to each bullet point. Use paragraphs to organize your response."},

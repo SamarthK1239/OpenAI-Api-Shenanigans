@@ -7,8 +7,7 @@ path = Path("../Environment-Variables/.env")
 load_dotenv(dotenv_path=path)
 
 # Set up openai client
-openai = OpenAI(
-    organization=os.getenv('organization'),
+client = OpenAI(
     api_key=os.getenv("api_key")
 )
 
@@ -19,7 +18,7 @@ def transcribe(file_path):
     audio_file = open(file_path + '\output_audio.mp3', "rb")
 
     # Use Whisper-1 model to transcribe audio file
-    transcription = openai.audio.transcriptions.create(
+    transcription = client.audio.transcriptions.create(
         model="whisper-1",
         file=audio_file
     )

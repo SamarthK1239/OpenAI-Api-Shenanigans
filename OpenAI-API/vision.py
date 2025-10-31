@@ -8,12 +8,11 @@ path = Path("Environment-Variables/.env")
 load_dotenv(dotenv_path=path)
 
 # Set up openai client
-openai = OpenAI(
-    organization=os.getenv('organization'),
+client = OpenAI(
     api_key=os.getenv("api_key")
 )
 
-response = openai.chat.completions.create(
+response = client.chat.completions.create(
     model="gpt-4-vision-preview",
     messages=[
         {
