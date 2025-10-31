@@ -45,6 +45,8 @@ OpenAI-API/
 
 ### Environment Variables
 - **ALWAYS** use environment variables for API keys
+- Create a folder called `Environment-Variables` in the repository root (not tracked in git)
+- Place a `.env` file in this folder with your credentials
 - Load from `Environment-Variables/.env` using `dotenv`
 - Required variables:
   - `organization`: OpenAI organization key
@@ -58,6 +60,8 @@ from pathlib import Path
 from dotenv import load_dotenv
 from openai import OpenAI
 
+# Load environment variables from Environment-Variables/.env
+# Note: This folder must be created by the user and is not tracked in git
 path = Path("Environment-Variables/.env")
 load_dotenv(dotenv_path=path)
 
@@ -70,10 +74,11 @@ openai = OpenAI(
 ## OpenAI API Best Practices
 
 ### Model Selection
-- Use `gpt-3.5-turbo-1106` for most tasks (default)
+- Use `gpt-3.5-turbo-1106` for most tasks (as used throughout this codebase)
 - Use GPT-4 models sparingly (not all developers have access)
 - Use `gpt-4-1106-preview` or `gpt-4-0125-preview` for large context (128k tokens)
 - Consider cost implications of model choices
+- Note: When adding new features, you may use newer model versions like `gpt-3.5-turbo` or `gpt-4o` if appropriate
 
 ### Prompt Design
 - Test prompts on ChatGPT website first before coding
