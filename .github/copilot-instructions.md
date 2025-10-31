@@ -78,7 +78,8 @@ openai = OpenAI(
 - The codebase uses various models depending on the task:
   - `gpt-3.5-turbo-1106` for storytelling
   - `gpt-4-1106-preview` for sentiment analysis and summarization
-  - `gpt-4o` for vision-based tasks
+  - `gpt-4-vision-preview` for vision examples (vision.py)
+  - `gpt-4o` for advanced vision-based tasks (TrainingAnswerer)
   - `whisper-1` for speech-to-text
   - `dall-e-2` for image generation
 - Use GPT-4 models sparingly (not all developers have access)
