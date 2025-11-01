@@ -55,6 +55,8 @@ OpenAI-API/
 - **NEVER** hardcode API keys in source files
 
 ### Standard Setup Pattern
+
+**For scripts in the root OpenAI-API directory:**
 ```python
 import os
 from pathlib import Path
@@ -64,6 +66,23 @@ from openai import OpenAI
 # Load environment variables from Environment-Variables/.env
 # Note: This folder must be created by the user and is not tracked in git
 path = Path("Environment-Variables/.env")
+load_dotenv(dotenv_path=path)
+
+openai = OpenAI(
+    organization=os.getenv('organization'),
+    api_key=os.getenv("api_key")
+)
+```
+
+**For scripts in subdirectories (e.g., Summarizer/, TrainingAnswerer/):**
+```python
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+from openai import OpenAI
+
+# Load environment variables from parent directory
+path = Path("../Environment-Variables/.env")
 load_dotenv(dotenv_path=path)
 
 openai = OpenAI(
