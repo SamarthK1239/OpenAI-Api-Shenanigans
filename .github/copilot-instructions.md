@@ -60,14 +60,16 @@ OpenAI-API/
 ```python
 import os
 from pathlib import Path
+
+import requests
 from dotenv import load_dotenv
 from openai import OpenAI
 
-# Load environment variables from Environment-Variables/.env
-# Note: This folder must be created by the user and is not tracked in git
+# Get environment variables
 path = Path("Environment-Variables/.env")
 load_dotenv(dotenv_path=path)
 
+# Set up openai client
 openai = OpenAI(
     organization=os.getenv('organization'),
     api_key=os.getenv("api_key")
@@ -78,13 +80,14 @@ openai = OpenAI(
 ```python
 import os
 from pathlib import Path
+
 from dotenv import load_dotenv
 from openai import OpenAI
 
-# Load environment variables from parent directory
 path = Path("../Environment-Variables/.env")
 load_dotenv(dotenv_path=path)
 
+# Set up openai client
 openai = OpenAI(
     organization=os.getenv('organization'),
     api_key=os.getenv("api_key")
