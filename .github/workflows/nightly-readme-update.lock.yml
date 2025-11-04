@@ -1020,24 +1020,30 @@ jobs:
             - Determine the project's purpose and current status
           
           ### Step 3: Update README.md
-          Update the following sections in README.md:
+          Update the following sections in README.md using the `edit` tool:
+          
           1. **Project List**: Update the "Code that's Currently Here" section
              - Add any new projects discovered
              - Update existing project descriptions based on code analysis
              - Maintain status tags: *(API version upgrade COMPLETED)*, *(NEW!)*, *(IN DEVELOPMENT)*, *(ONGOING!)*, *(ON HOLD)*
              - Keep the original friendly, informative tone
+             - Use `edit` tool with precise old_str/new_str replacements
           
-          2. **Last Updated Timestamp**: Add or update a "Last Updated" line at the end of the README
-             - Format: `Last Updated: YYYY-MM-DD`
+          2. **Last Updated Timestamp**: Add or update a "Last Updated" line at the very end of the README
+             - Format: `**Last Updated:** YYYY-MM-DD`
+             - If it already exists, use `edit` tool to update the date
+             - If it doesn't exist, append it at the end using `edit` tool
+          
+          **Important:** Make each edit separately using the `edit` tool. Do NOT generate git patches or diffs. Use direct file edits only.
           
           ### Step 4: Create Pull Request
+          After all edits are complete:
           - Use the `create-pull-request` safe output
           - Title: "chore: Update README with latest project information"
           - Body should include:
             - Summary of changes detected
             - List of projects added/updated
             - Note that this is an automated update
-          - Branch name should use the `readme-update` prefix with a timestamp
           
           ## Guidelines
           - Preserve the README's existing tone and style
