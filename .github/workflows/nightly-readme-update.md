@@ -17,6 +17,8 @@ tools:
     - "git log:*"
     - "git diff:*"
     - "git status"
+    - "git add:*"
+    - "git commit:*"
 
 timeout_minutes: 10
 ---
@@ -58,8 +60,12 @@ Update the following sections in README.md using the `edit` tool:
 
 **Important:** Make each edit separately using the `edit` tool. Do NOT generate git patches or diffs. Use direct file edits only.
 
+After making all edits:
+1. Stage the changes: `git add README.md`
+2. Commit with message: `git commit -m "chore: Update README with latest project information"`
+
 ### Step 4: Create Pull Request
-After all edits are complete:
+After the commit is made:
 - Use the `create-pull-request` safe output
 - Title: "chore: Update README with latest project information"
 - Body should include:
