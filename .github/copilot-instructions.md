@@ -11,6 +11,8 @@ This repository contains various Python projects demonstrating different OpenAI 
 - **TrainingAnswerer**: A modern GUI application with screen capture, AI-powered question answering, OCR, and auto-click features
 - **StarterCodeGenerator**: An image-to-code generator using GPT-4o (in development)
 
+Additionally, the repository uses **GitHub Agentic Workflows** for automated maintenance tasks including documentation updates and weekly research reports.
+
 ## Code Style and Standards
 
 ### Python Conventions
@@ -561,3 +563,45 @@ When adding new OpenAI API demonstrations:
 - **Model Selection**: Use simpler models for development/testing when possible
 - **Edge Cases**: Test with various inputs including edge cases
 - **Error Scenarios**: Test API failures, rate limits, and invalid inputs
+
+## GitHub Agentic Workflows
+
+This repository uses GitHub Agentic Workflows for automated maintenance tasks. These are AI-powered workflows that help keep documentation up-to-date and perform regular research tasks.
+
+### Active Workflows
+
+- **update-copilot-instructions.md**: Runs weekdays at 12am EST to analyze recent commits and update this Copilot instructions file
+  - Reviews recent Python code changes
+  - Updates documentation for new projects or features
+  - Creates pull requests with changes
+  
+- **nightly-readme-update.md**: Runs weekdays at 12am EST to update the main README
+  - Scans repository structure for changes
+  - Updates project listings and descriptions
+  - Maintains the "Last Updated" timestamp
+  
+- **weekly-research.md**: Runs weekly to research developments related to the repository
+
+### Workflow File Structure
+
+Agentic workflows use a markdown + YAML frontmatter format:
+- `.md` files in `.github/workflows/` define the workflow instructions
+- `.lock.yml` files are the compiled GitHub Actions workflows (generated automatically)
+- Workflow prompts and templates are stored in `.github/prompts/`
+
+### Working with Agentic Workflows
+
+When modifying agentic workflows:
+1. Edit the `.md` file, NOT the `.lock.yml` file
+2. The `.lock.yml` file is auto-generated from the `.md` file
+3. Use the `gh aw compile` command to regenerate `.lock.yml` after changes
+4. Workflow instructions in `.github/instructions/github-agentic-workflows.instructions.md` provide detailed guidance
+
+### Agentic Workflow Best Practices
+
+- Use `safe-outputs` for GitHub API operations (issue creation, PR creation, comments)
+- Specify minimal `permissions` for security
+- Set appropriate `timeout_minutes` to prevent runaway costs
+- Use the `edit` tool for file modifications
+- Leverage GitHub context expressions like `${{ github.repository }}` for dynamic content
+- Keep workflow instructions clear and focused on a single task
