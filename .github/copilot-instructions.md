@@ -58,6 +58,7 @@ OpenAI-API/
 │   ├── openai_answerer.py  # OpenAI API integration
 │   ├── screen_reader.py    # Screen capture utilities
 │   ├── build_exe.py        # PyInstaller build script
+│   ├── test_frosted_glass.py # Testing utility for pywinstyles installation
 │   ├── requirements.txt    # Project dependencies
 │   ├── README.md
 │   └── Info/               # Documentation folder
@@ -472,6 +473,13 @@ A modern GUI application for answering training questions using AI vision and co
 - Uses `OPENAI_API_KEY` instead of `api_key` in .env
 - Requires additional dependencies in requirements.txt
 - See README.md and Info/ folder for detailed documentation
+
+**Testing Utilities:**
+- `test_frosted_glass.py`: Diagnostic script to verify pywinstyles installation and Windows 11 effects
+  - Checks if pywinstyles is installed and functioning
+  - Verifies Windows version compatibility (Windows 10+)
+  - Creates a test window with acrylic frosted glass effect
+  - Useful for troubleshooting UI effects before running the main application
 
 ### StarterCodeGenerator
 An image-to-code generator using GPT-4o (currently in development).
