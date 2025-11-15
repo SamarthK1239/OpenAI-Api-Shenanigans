@@ -35,6 +35,7 @@ When using this code, please follow these security guidelines:
   - `python-dotenv>=1.0.0` (Environment variable management)
   - `Pillow>=10.0.0` (Image processing)
   - `pyautogui>=0.9.53` (Screen automation - TrainingAnswerer)
+  - `pytesseract>=0.3.10` (OCR for auto-click feature - TrainingAnswerer; requires Tesseract-OCR installation, which involves external binary execution)
 - Review dependency security advisories regularly
 - Use `pip install --upgrade` to update packages when security patches are released
 
