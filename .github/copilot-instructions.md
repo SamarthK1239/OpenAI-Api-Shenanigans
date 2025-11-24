@@ -58,8 +58,10 @@ OpenAI-API/
 │   ├── openai_answerer.py  # OpenAI API integration
 │   ├── screen_reader.py    # Screen capture utilities
 │   ├── build_exe.py        # PyInstaller build script
+│   ├── build_simple.bat    # Simplified Windows build script
 │   ├── test_frosted_glass.py # Testing utility for pywinstyles installation
 │   ├── requirements.txt    # Project dependencies
+│   ├── SETUP_GUIDE.txt     # Quick setup guide for executable distribution
 │   ├── README.md
 │   └── Info/               # Documentation folder
 │       ├── AUTO_CLICK_GUIDE.md
@@ -473,6 +475,18 @@ A modern GUI application for answering training questions using AI vision and co
 - Uses `OPENAI_API_KEY` instead of `api_key` in .env
 - Requires additional dependencies in requirements.txt
 - See README.md and Info/ folder for detailed documentation
+
+**Build and Distribution:**
+- `build_exe.py`: Python-based PyInstaller build script for creating standalone executables
+- `build_simple.bat`: Windows batch script for simplified executable building
+  - Automatically installs PyInstaller if needed
+  - Builds onefile windowed executable with hidden imports
+  - Includes pywinstyles and PIL dependencies
+  - Outputs `TrainingQA-Helper.exe` in dist/ folder
+- `SETUP_GUIDE.txt`: Quick setup guide for executable distribution
+  - Instructions for placing .env file with the executable
+  - Troubleshooting common API key configuration issues
+  - Distribution guidance for sharing the application
 
 **Testing Utilities:**
 - `test_frosted_glass.py`: Diagnostic script to verify pywinstyles installation and Windows 11 effects
