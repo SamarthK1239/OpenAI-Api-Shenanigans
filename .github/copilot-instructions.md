@@ -165,16 +165,50 @@ client = OpenAI(api_key=api_key)
 
 ## Security Guidelines
 
+This repository has a comprehensive [SECURITY.md](../SECURITY.md) file that outlines security best practices. Key highlights:
+
 ### Sensitive Data
-- Never commit `.env` files (already in `.gitignore`)
+- **CRITICAL**: Never commit `.env` files (already in `.gitignore`)
+- Always use environment variables for API keys in the `Environment-Variables/` folder
 - Don't log or print API keys
+- If you accidentally commit an API key, immediately revoke it on the OpenAI platform and generate a new one
 - Be cautious with user inputs to prevent prompt injection
 - Validate and sanitize all user inputs
+
+### Dependency Security
+- Keep dependencies updated, especially security-critical packages:
+  - `openai>=1.0.0`, `python-dotenv>=1.0.0`, `Pillow>=10.0.0`
+  - `pyautogui>=0.9.53`, `tiktoken>=0.5.0`, `requests>=2.31.0`
+  - `pytesseract>=0.3.10` (involves external binary execution)
+- Review dependency security advisories regularly
+- Use `pip install --upgrade` to update packages when security patches are released
+
+### Input Validation
+- Validate and sanitize all user inputs before sending to OpenAI APIs
+- Be aware of prompt injection risks when accepting user-provided prompts
+- Set appropriate `max_tokens` limits to prevent unexpected API costs
+
+### Platform-Specific Security (TrainingAnswerer)
+- Be cautious about what content is captured and sent to OpenAI APIs
+- Avoid capturing sensitive information (passwords, personal data, etc.)
+- Review `debug_screenshot.png` files before sharing them
+
+### Cost Management
+- Monitor OpenAI API usage on the platform dashboard
+- Set usage limits in your OpenAI account settings
+- Use token counting (TikToken) to estimate costs before API calls
+- Consider using GPT-3.5-Turbo for development/testing (less expensive than GPT-4)
 
 ### Error Handling
 - Implement proper error handling for API calls
 - Handle rate limits and timeouts gracefully
 - Provide informative error messages to users
+
+### Reporting Security Vulnerabilities
+- **Do NOT open public issues** for security vulnerabilities
+- Contact the repository owner directly through GitHub [@SamarthK1239](https://github.com/SamarthK1239)
+- Include: description, reproduction steps, potential impact, and suggested fix
+- Expect initial response within 48-72 hours
 
 ## File Handling
 
