@@ -165,9 +165,12 @@ client = OpenAI(api_key=api_key)
 
 ## Security Guidelines
 
+**IMPORTANT**: This repository has a comprehensive [SECURITY.md](../SECURITY.md) file with detailed security policies and best practices. All contributors should review it before making changes.
+
 ### Sensitive Data
 - Never commit `.env` files (already in `.gitignore`)
 - Don't log or print API keys
+- If you accidentally commit an API key, immediately revoke it on the OpenAI platform and generate a new one
 - Be cautious with user inputs to prevent prompt injection
 - Validate and sanitize all user inputs
 
@@ -175,6 +178,12 @@ client = OpenAI(api_key=api_key)
 - Implement proper error handling for API calls
 - Handle rate limits and timeouts gracefully
 - Provide informative error messages to users
+
+### Security Best Practices
+- Keep dependencies updated (see SECURITY.md for critical packages)
+- Monitor OpenAI API usage and set usage limits
+- For TrainingAnswerer: Be cautious about capturing sensitive information in screenshots
+- Review security advisories for dependencies regularly
 
 ## File Handling
 
